@@ -5,7 +5,9 @@
       "Bash(findstr:*)",
       "Bash(npm run dev:*)",
       "Bash(npm install)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nReorganize folder structure for better project organization\n\nChanges:\n- Created design/ folder for all Figma-related files\n  • enhanced_figma_design.json\n  • enhanced_figma_design_generator.py\n  • enhanced_figma_plugin.json\n  • figma.md\n  • figma_design_generator.py\n  • figma_design_specification.json\n  • figma_plugin_data.json\n\n- Created docs/ folder for all documentation\n  • DESIGN_IMPLEMENTATION_GUIDE.md\n  • FIGMA_DESIGN_README.md\n  • design_documentation.md\n  • enhanced_design_docs.md\n  • visual_hierarchy_guide.md\n\n- Removed unnecessary files\n  • ML - Shortcut.lnk\n  • open/ folder\n\nThis improves project maintainability and makes navigation easier.\n\n🤖 Generated with Claude Code\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "ask": []

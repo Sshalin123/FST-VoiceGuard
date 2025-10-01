@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Shield, Zap, Lock, BarChart2, Globe, Users, TrendingUp, CheckCircle, ArrowRight, Star, Play, Activity } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -176,7 +176,7 @@ const Home = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Link
-              to="/detect"
+              href="/detect"
               className="group px-8 py-4 bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-electric-purple)] rounded-full text-white font-semibold text-lg hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 transition-all flex items-center space-x-2"
             >
               <span>Analyze Voice Now</span>
@@ -388,7 +388,7 @@ const Home = () => {
               Join 10,000+ users protecting their vocal identity
             </p>
             <Link
-              to="/detect"
+              href="/detect"
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-electric-purple)] rounded-full text-white font-semibold text-lg hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 transition-all space-x-2"
             >
               <span>Start Free Analysis</span>

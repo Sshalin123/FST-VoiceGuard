@@ -113,11 +113,11 @@ const Detection = () => {
               // Extract hex codes matching the exact format
               const extractedHexCodes = results.data
                 .flatMap(row => row)
-                .filter(cell => 
-                  typeof cell === 'string' && 
+                .filter(cell =>
+                  typeof cell === 'string' &&
                   /^[0-9a-f]{32}$/.test(cell)
                 );
-              
+
               // Use Promise.all to handle async fetch requests inside map
               const qrUrls = await Promise.all(extractedHexCodes.map(async (hex) => {
                 try {
@@ -158,7 +158,7 @@ const Detection = () => {
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     setIsSpeechSupported(!!SpeechRecognition);
-    
+
     if (SpeechRecognition) {
       try {
         const recognition = new SpeechRecognition();
@@ -264,19 +264,19 @@ const Detection = () => {
     const isReal = label === 'real';
     const featureNames = [
       "Spectral Consistency",
-      "Micro-timing Analysis", 
+      "Micro-timing Analysis",
       "Vocal Biomarkers",
       "Synthetic Artifacts"
     ];
 
     return {
       isDeepfake: !isReal,
-      confidence: isReal 
+      confidence: isReal
         ? 60 + Math.floor(Math.random() * 40)  // Always 60-99 for real
         : Math.floor(Math.random() * 50),      // 0-49 for fake
       features: featureNames.map(name => ({
         name,
-        value: isReal 
+        value: isReal
           ? 60 + Math.floor(Math.random() * 40)  // 60-99 for real
           : Math.floor(Math.random() * 50)       // 0-49 for fake
       }))
@@ -519,7 +519,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
     try {
       await new Promise(resolve => setTimeout(resolve, 2500));
-      
+
       const details: SourceDetails = {
         name: `User ${Math.floor(Math.random() * 1000)}`,
         ipAddress: `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
@@ -549,7 +549,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     <div className="container mx-auto px-4 pt-28 py-12 relative">
       {/* Background content that will be blurred when modal is open */}
       <div className={`${showQRCode || showSourceIdentification ? 'blur-sm' : ''}`}>
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -590,7 +590,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
               transition={{ duration: 0.3 }}
               className="bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 mb-8 border border-gray-700"
             >
-              <div 
+              <div
                 className="border-2 border-dashed border-gray-600 rounded-xl p-12 text-center cursor-pointer hover:border-blue-500 transition-all duration-300"
                 onClick={() => fileInputRef.current?.click()}
                 onDragOver={(e) => e.preventDefault()}
@@ -602,12 +602,12 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                 <button className="px-4 py-2 bg-gray-700 rounded-lg text-sm font-medium hover:bg-gray-600 transition-colors text-white">
                   Select File
                 </button>
-                <input 
-                  type="file" 
+                <input
+                  type="file"
                   ref={fileInputRef}
                   onChange={handleFileChange}
                   accept="audio/*"
-                  className="hidden" 
+                  className="hidden"
                 />
               </div>
 
@@ -622,13 +622,13 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                   >
                     <FiMic className="w-8 h-8" />
                     {isRecording && (
-                      <motion.div 
+                      <motion.div
                         className="absolute inset-0 rounded-full border-4 border-red-500 opacity-0"
-                        animate={{ 
+                        animate={{
                           scale: [1, 1.5],
                           opacity: [0.7, 0]
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 1.5,
                           repeat: Infinity,
                           ease: "easeOut"
@@ -636,9 +636,9 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                       />
                     )}
                   </motion.button>
-                  
+
                   {isRecording && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="mt-4 text-red-400 flex items-center"
@@ -647,7 +647,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                       Recording...
                     </motion.div>
                   )}
-                  
+
                   {(isSpeechSupported && (isRecording || transcript)) && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
@@ -668,7 +668,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                       </div>
                     </motion.div>
                   )}
-                  
+
                   {!isSpeechSupported && (
                     <div className="mt-4 text-sm text-yellow-400">
                       Note: Speech-to-text not supported in your browser
@@ -704,8 +704,8 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
               </div>
 
               <div className="w-full bg-gray-700 rounded-full h-2.5">
-                <motion.div 
-                  className="bg-blue-600 h-2.5 rounded-full" 
+                <motion.div
+                  className="bg-blue-600 h-2.5 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 3, ease: "easeInOut" }}
@@ -782,7 +782,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                       <span className="text-sm font-semibold text-white">{feature.value}%</span>
                     </div>
                     <div className="w-full bg-gray-600 rounded-full h-2">
-                      <motion.div 
+                      <motion.div
                         className={`h-2 rounded-full ${feature.value > 85 ? 'bg-green-500' : feature.value > 70 ? 'bg-yellow-500' : 'bg-red-500'}`}
                         initial={{ width: 0 }}
                         animate={{ width: `${feature.value}%` }}
@@ -808,12 +808,12 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                   <p className="text-gray-300">
                     {results.isDeepfake ? (
                       <>
-                        <span className="font-medium">Warning:</span> This voice sample shows strong indicators of synthetic manipulation. 
+                        <span className="font-medium">Warning:</span> This voice sample shows strong indicators of synthetic manipulation.
                         We recommend verifying the source and requesting additional authentication.
                       </>
                     ) : (
                       <>
-                        This voice sample appears authentic with high confidence. 
+                        This voice sample appears authentic with high confidence.
                         No additional verification is recommended at this time.
                       </>
                     )}
@@ -840,13 +840,13 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                     <FiMail className="mr-2" /> Share via Email
                   </motion.button>
                   <div className="absolute left-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button 
+                    <button
                       onClick={() => shareReport("email")}
                       className="block w-full text-left px-4 py-2 text-white hover:bg-gray-700 rounded-t-lg"
                     >
                       Default Email
                     </button>
-                    <button 
+                    <button
                       onClick={() => shareReport("gmail")}
                       className="block w-full text-left px-4 py-2 text-white hover:bg-gray-700 rounded-b-lg"
                     >
@@ -885,13 +885,13 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       {/* QR Code Modal */}
       <AnimatePresence>
         {showQRCode && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -899,7 +899,7 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
               className="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-8 relative"
             >
               <div className="absolute top-4 right-4">
-                <button 
+                <button
                   onClick={toggleQRCode}
                   className="text-gray-400 hover:text-white"
                 >
@@ -931,13 +931,13 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       {/* Source Identification Modal */}
       <AnimatePresence>
         {showSourceIdentification && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -960,12 +960,12 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                   <p className="text-gray-400">Tracing origin of synthetic voice...</p>
                 </div>
               ) : sourceDetails ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <div className="absolute top-4 right-4">
-                    <button 
+                    <button
                       onClick={closeSourceIdentification}
                       className="text-gray-400 hover:text-white"
                     >
